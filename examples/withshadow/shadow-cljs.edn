@@ -1,0 +1,12 @@
+{:source-paths ["src"] ; where you put source files
+
+ :dependencies [[reagent "0.8.1"]] ; ClojureScript dependencies
+
+        ; "app" is the build-id, in running "shadow-cljs compile app"
+ :builds {:app {:target :browser ; compile code that loads in a browser
+                :output-dir "public/js"
+                :asset-path "/js" ; assets loaded from index.html are based on path "/js"
+
+                        ; "main.js" is the name for the bundle entry
+                :modules {:main {:init-fn app.main/main!}}}}}
+                               ; function app.main.main! is called when page loads
