@@ -25,4 +25,8 @@ npx create-cljs-project your_project_name
 
 ##Develop
 
-shadow-cljs compile app
+
+Run the application in development mode:
+```shell
+npm run dev
+```
