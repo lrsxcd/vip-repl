@@ -23,10 +23,31 @@ npm install -g shadow-cljs
 npx create-cljs-project your_project_name
 ```
 
-##Develop
+## Develop
 
 
 Run the application in development mode:
 ```shell
 npm run dev
+```
+
+
+### Add a REACT library
+
+This is what it takes to add a react library
+
+```shell
+npm install --save libname
+```
+Add the library code to the main page
+
+npm run dev
+
+#### example with react-leaflet
+
+adding the leaflet to the packages.json
+
+```shell
+npm add --save leaflet
+npm add --save react-leaflet
 ```
