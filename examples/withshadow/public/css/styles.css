@@ -3,6 +3,10 @@ body {
   background: #F0F4F8;
 }
 
+#leaflet-map-pane{
+  width: 600px;
+}
+
 p {
   line-height: 1.8;
 }
