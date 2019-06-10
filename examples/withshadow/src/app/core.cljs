@@ -1,13 +1,13 @@
 (ns app.core
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            ; ["@react-leaflet" :refer [Map]]
+            ["react-leaflet" :refer [Map]]
             ))
 
 (defn app
   []
   [:div "VIP-REPL"]
-  ; [:> Map])
+  [:> Map]
 )
 
 (defn ^:dev/after-load start
