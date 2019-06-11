@@ -47,6 +47,7 @@ npm install --save libname
 Add the library code to the main page:
 
 ```shell
+npm install
 npm run dev
 ```
 

@@ -1,6 +1,7 @@
 (ns app.core
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
+            [app.vip-repl-api :refer [create-map]]
             ["react-leaflet" :refer [Map TileLayer  Marker Popup]]))
 
 
