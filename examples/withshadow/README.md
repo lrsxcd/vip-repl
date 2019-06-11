@@ -17,18 +17,19 @@ nvm list
 
 ## Development
 
-Run the application in development mode:
-
-The first time you are running the app install all required npm libriries 
+Before running the application for the first time you need to install
+all required `npm` libraries. From the top directory of the
+installation, do the following:
 
 ```shell
-cd withshadow
+cd examples/withshadow
 npm install 
 ```
 
-To run the app:
+Then, every time you want to run the application, do:
+
 ```shell
-cd withshadow
+cd examples/withshadow
 npm run dev
 ```
 
