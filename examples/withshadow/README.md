@@ -1,11 +1,15 @@
-# Using (shadow) [http://shadow-cljs.org/]
-### WORK IN Progress not yet ready - 
+# Using [Shadow](http://shadow-cljs.org/)
+
+## WORK IN PROGRESS
+
 This project was createed with the shadow npx tool
 
-###prerequisites 
-(install nvm) [https://gist.github.com/d2s/372b5943bce17b964a79]
+## Prerequisites
+
+Install [nvm](https://gist.github.com/d2s/372b5943bce17b964a79)
 
 Install latest stabel node 
+
 ```shell 
 nvm install v10.15.3
 nvm alias default v10.15.3
@@ -13,39 +17,42 @@ nvm list
 ```
 
 ## Install shadow tools with npm
+
 ```shell
 npm install -g shadow-cljs
 ```
 
-## Create a shodow project 
+## Create a Shadow Project
 
 ```shell
 npx create-cljs-project your_project_name
 ```
 
-## Develop
-
+## Development
 
 Run the application in development mode:
+
 ```shell
 npm run dev
 ```
 
+### Add a React library
 
-### Add a REACT library
-
-This is what it takes to add a react library
+This is how you add a React library:
 
 ```shell
 npm install --save libname
 ```
-Add the library code to the main page
 
+Add the library code to the main page:
+
+```shell
 npm run dev
+```
 
-#### example with react-leaflet
+#### Example of using React-Leaflet
 
-adding the leaflet to the packages.json
+Adding the leaflet to the packages.json
 
 ```shell
 npm add --save leaflet
