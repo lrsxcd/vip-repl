@@ -3,8 +3,13 @@
             [re-frame.core :as rf]
             ["react-leaflet" :refer [Map TileLayer  Marker Popup]]))
 
+(defn create-marker
+  [center_lat center_lng]
+  [:>  Marker {:position [center_lat, center_lng]}])
+
+
 (defn create-map
-  "Create HTML snippet for react-leaflet map
+  "Create  react-leaflet map
 
   Arguments:
       center_lat {float} -- map center latitude
@@ -20,6 +25,10 @@
   [:> Map  {:center [center_lat center_lng] :zoom zoom}
    [:> TileLayer  {:attribution= "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                    :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}]
-   ])
+   (create-marker center_lat center_lng)
+   (create-marker (+ center_lat 0.01) center_lng)
+   (create-marker (+ center_lat 0.01) (+ center_lng 0.01))
    
+   ])
+
 
