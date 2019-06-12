@@ -8,8 +8,8 @@
 
 (defn app
   []
-  [:div "VIP-REPL"]
-  [create-map  51.505 -0.09  13 "" ""]) 
+  [:div "VIP-REPL" [:input {:type "range" :id "start" :name "test" :min "0" :max "11"}]]
+  [create-map  51.505 -0.09  13 "" ""])
   ; [:> Map  {:center [51.505 -0.09]
   ;           :zoom 13}
   ;  [:> TileLayer  {:attribution= "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

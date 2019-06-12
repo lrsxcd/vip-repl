@@ -5,7 +5,8 @@
 
 (defn create-marker
   [center_lat center_lng]
-  [:>  Marker {:position [center_lat, center_lng]}])
+  [:>  Marker {:position [center_lat, center_lng]} 
+   [:> Popup "I am a pop up"]])
 
 
 (defn create-map
@@ -27,8 +28,7 @@
                    :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}]
    (create-marker center_lat center_lng)
    (create-marker (+ center_lat 0.01) center_lng)
-   (create-marker (+ center_lat 0.01) (+ center_lng 0.01))
-   
-   ])
+   (create-marker (+ center_lat 0.01) (+ center_lng 0.01))]
+  )
 
 
