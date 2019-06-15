@@ -8,7 +8,7 @@ This is work in progress -- more will come.
 
 ## Inspiration
 
-[Withshadow](../withshadow) for using [React Leaflet](https://react-leaflet.js.org).
+[Withshadow](../withshadow) for using [React Leaflet](https://react-leaflet.js.org) with [shadow-cljs](https://github.com/thheller/shadow-cljs).
 
 [Snake Lake](https://github.com/timothypratley/snakelake) for client-server architecture using [Sente](https://github.com/ptaoussanis/sente).
 
