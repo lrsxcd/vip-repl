@@ -43,6 +43,14 @@
 (defmethod event :default [{:as ev-msg :keys [event]}]
   (println "Unhandled event: " event))
 
+(defmethod event :chsk/uidport-open [{:keys [uid client-id]}]
+  (println "New connection:" uid client-id))
+
+(defmethod event :chsk/uidport-close [{:keys [uid]}]
+  (println "Disconnected:" uid))
+
+(defmethod event :chsk/ws-ping [_])
+
 (defmethod event :concept1/add-point
   [ev-msg]
   (-> ev-msg
@@ -52,8 +60,6 @@
       :event
       second
       model/add-point!))
-
-(defmethod event :chsk/ws-ping [_])
 
 (defn start-router []
   (defonce router

@@ -36,14 +36,10 @@
 (defmethod event-msg-handler :chsk/recv [{:as ev-msg :keys [?data]}]
   (model/world! (second ?data)))
 
-(defn send-username []
-  (chsk-send! [:cocept1/username (:username @model/app-state)]))
-
 (defmethod event-msg-handler :chsk/handshake [{:as ev-msg :keys [?data]}]
   (let [[?uid ?csrf-token ?handshake-data] ?data]
     (println "Handshake:" ?data)
-    (model/uid! ?uid)
-    (send-username)))
+    (model/uid! ?uid)))
 
 (defonce router
   (sente/start-client-chsk-router! ch-chsk event-msg-handler))
