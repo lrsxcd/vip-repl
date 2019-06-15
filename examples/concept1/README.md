@@ -2,13 +2,15 @@
 
 This is a very basic example of sharing state across clients through one central server.
 
-Currently, only the set of markers is shared across leaflet maps.
+At the moment, we only the set of markers across leaflet maps, nothing more.
+
+This is work in progress -- more will come.
 
 ## Inspiration
 
-[withshadow](../withshadow) for using React Leaflet.
+[Withshadow](../withshadow) for using [React Leaflet](https://react-leaflet.js.org).
 
-[snakelake](https://github.com/timothypratley/snakelake) for client-server architecture using [Sente](https://github.com/ptaoussanis/sente).
+[Snake Lake](https://github.com/timothypratley/snakelake) for client-server architecture using [Sente](https://github.com/ptaoussanis/sente).
 
 ## Usage
 
@@ -23,7 +25,7 @@ yarn install
 yarn watch
 ```
 
-Open two browsers at `localhost:8700`, try clicking them, and see them synchronize.
+Open `localhost:8700` at two distinct browsers, try clicking the maps, and see them synchronize.
 
 ## License
 
