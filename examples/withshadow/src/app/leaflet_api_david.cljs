@@ -10,11 +10,6 @@
                   {:lat 59.91 :lng 10.74}
                   {:lat 59.91 :lng 10.76}])
 
-(defn create-marker
-  [lat lng]
-  [:>  Marker {:position [lat, lng]} 
-   [:> Popup (gstring/format "I am a marker at (%.2f, %.2f)" lat lng)]])
-
 (defn create-markers
   "Create markers HTML snippet
 
@@ -25,10 +20,15 @@
   "
   ([data] (create-markers data :lat :lng))
   ([data lat_key lng_key]
-   (transduce (comp
-               (filter #(and (% lat_key) (% lng_key)))
-               (map #(create-marker (% lat_key) (% lng_key))))
-              conj data)))
+   (letfn [(create-mark
+             [lat lng]
+             [:>  Marker {:position [lat, lng]} 
+              [:> Popup (gstring/format
+                         "I am a marker at (%.2f, %.2f)" lat lng)]])]
+     (transduce (comp
+                 (filter #(and (% lat_key) (% lng_key)))
+                 (map #(create-mark (% lat_key) (% lng_key))))
+                conj data))))
 
 (defn create-map
   "Create  react-leaflet map
