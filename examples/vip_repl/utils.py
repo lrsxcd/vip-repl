@@ -27,7 +27,12 @@ def start_ui_server():
     import subprocess
     subprocess.run(["cd", "../client", "&&", "npm", "run", "dev"])
 
-def start_data_server(context):
+def start_ws_server(context):
+    """create the websocket server
+    
+    Arguments:
+        context {[type]} -- [description]
+    """
     from someware import start_ws_server
     if not context:
         context = default_context()
