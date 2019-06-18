@@ -2,10 +2,11 @@
   (:require
    [concept1.client.ainit]
    [concept1.client.view :as view]
+   [concept1.client.model :as model]
    [reagent.core :as reagent :refer [atom]]))
 
 (defn start []
-  (reagent/render-component [view/main]
+  (reagent/render-component [view/main @model/app-state]
                             (. js/document (getElementById "app"))))
 
 (defn ^:export init []

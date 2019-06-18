@@ -16,3 +16,7 @@
                      {:port (or (some-> (first args) (Integer/parseInt))
                                 (environ/env :http-port port))})
   (println "Ready at port" port "."))
+
+(comment
+  (future (-main))
+  )

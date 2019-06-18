@@ -4,10 +4,19 @@
     [clojure.set :as set]))
 
 (defonce state
-  (atom {:points []}))
+  (atom {}))
 
-(defn add-point! [point]
-  (swap! state update :points #(conj % point)))
+(defn assoc-in! [path new-val]
+  (swap! state assoc-in path new-val))
 
 (defn next-uid [{:keys [params]}]
   (java.util.UUID/randomUUID))
+
+
+(comment
+
+  (reset!
+   state
+   {:components [[:leaflet []]]})
+
+  )

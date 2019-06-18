@@ -4,7 +4,7 @@
 
 (defonce app-state
   (reagent/atom
-   {:world {:points [[50 0]]}}))
+   {}))
 
 (defn world! [world]
   (swap! app-state assoc :world world))

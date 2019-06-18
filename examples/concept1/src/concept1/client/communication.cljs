@@ -20,8 +20,8 @@
 (defonce chsk-send! (:send-fn channel-socket))
 (defonce chsk-state (:state channel-socket))
 
-(defn add-point! [point]
-  (chsk-send! [:concept1/add-point point]))
+(defn assoc-in! [path new-val]
+  (chsk-send! [:concept1/assoc-in! path new-val]))
 
 (defmulti event-msg-handler :id)
 

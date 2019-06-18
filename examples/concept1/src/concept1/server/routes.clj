@@ -51,15 +51,12 @@
 
 (defmethod event :chsk/ws-ping [_])
 
-(defmethod event :concept1/add-point
+(defmethod event :concept1/assoc-in!
   [ev-msg]
   (-> ev-msg
       :event
-      pprint)
-  (-> ev-msg
-      :event
-      second
-      model/add-point!))
+      ((fn [[_ path new-val]]
+         (model/assoc-in! path new-val)))))
 
 (defn start-router []
   (defonce router

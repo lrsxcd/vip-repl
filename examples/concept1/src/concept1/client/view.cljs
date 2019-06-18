@@ -8,30 +8,54 @@
     [goog.crypt :as crypt]
     [goog.dom.forms :as forms]
     [reagent.core :as reagent :refer [atom]]
-    [react-leaflet :refer [Map TileLayer  Marker Popup]])
+    [react-leaflet :refer [Map TileLayer Marker Circle Popup]])
   (:import
    [goog.crypt Md5]))
 
-(defn leaflet-map [state]
+(defn leaflet-map [circles
+                   markers
+                   selection
+                   state]
   [:div {:height "400px"}
-   (->> state
-        :world
-        :points
-        (map (fn [point]
-               [:> Marker {:position point}
-                [:> Popup "A pretty CSS3 popup."]]))
+   (->> 
         (into
          [:> Map  {:center  [51.505 -0.09]
                    :zoom    4
-                   :onclick (fn [this]
-                              (-> this
-                                  .-latlng
-                                  ((juxt #(.-lat %) #(.-lng %)))
-                                  communication/add-point!))}
+                   ;; :onclick (fn [this]
+                   ;;            (-> this
+                   ;;                .-latlng
+                   ;;                ((juxt #(.-lat %) #(.-lng %)))
+                   ;;                communication/add-point!))
+                   }
           [:> TileLayer  {:attribution= "Tiles &copy ; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-                          :url          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"}]]))])
+                          :url          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"}]]
 
-(defn main []
+         (concat
+          (->> circles
+               (get-in state)
+               (map (fn [{:keys [latlng label]}]
+                      [:> Circle {:position latlng}
+                       [:> Popup label]])))
+          (->> markers
+               (get-in state)
+               (map (fn [{:keys [latlng label]}]
+                      [:> Marker {:position latlng}
+                       [:> Popup label]]))))))])
+
+(def lookup
+  {:leaflet-map leaflet-map})
+
+(defn main [state]
   [:div
-   [leaflet-map @model/app-state]])
+   [:p (pr-str state)]
+   (->> state
+        :world
+        :components
+        (map (fn [comp-type & args]
+               (println [comp-type args])
+               (->> args
+                    vec
+                    (conj state)
+                    (into [(lookup comp-type)]))))
+        (into [:div]))])
 
