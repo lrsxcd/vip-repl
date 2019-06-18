@@ -5,12 +5,22 @@
             [app.leaflet-api-david :refer [create-map]]
             [react-leaflet :refer [Map TileLayer  Marker Popup]]))
 
+; (defn input-with-change-event [id type value]
+;   [:> Input {:control true
+;              :id id
+;              :type type
+;              :value value}]
+;   )
+
 
 (defn app
   []
-  [:div "VIP-REPL" [:input {:type "range" :id "start"
-                            :name "test" :min "0" :max "11"}]]
-  [create-map 59.92 10.75 12 nil nil])
+  [:div
+  [create-map 59.92 10.75 12 nil nil]
+  ; [create-map 59.92 10.75 12 nil nil]
+  [:div {:id "filters-container"} [:input {:type "range" :id "start"
+                                           :name "test" :min "0" :max "11"}]
+   [:input {:value "4"}]]])
 
 ;;  [create-map  51.505 -0.09  13 "" ""]
 
