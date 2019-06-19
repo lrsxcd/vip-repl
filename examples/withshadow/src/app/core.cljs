@@ -16,11 +16,11 @@
 (defn app
   []
   [:div
-  [create-map 59.92 10.75 12 nil nil]
+   [create-map 59.92 10.75 12 nil nil]
   ; [create-map 59.92 10.75 12 nil nil]
-  [:div {:id "filters-container"} [:input {:type "range" :id "start"
-                                           :name "test" :min "0" :max "11"}]
-   [:input {:value "4"}]]])
+   [:div {:id "filters-container"} [:input {:type "range" :id "start"
+                                            :name "test" :min "0" :max "11"}]
+    [:input {:value "4"}]]])
 
 ;;  [create-map  51.505 -0.09  13 "" ""]
 
@@ -34,8 +34,11 @@
 
 (defn ^:dev/after-load start
   []
+  (rf/dispatch-sync [:initialize])
   (r/render [app]
-            (.getElementById js/document "app")))
+            (.getElementById js/document "app"))(rf/dispatch-sync [:initialize]))
+
+
 
 (defn ^:export init
   []
