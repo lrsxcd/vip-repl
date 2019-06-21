@@ -28,7 +28,7 @@
     [:input { :on-change #(rf/dispatch [:update-filter :simple (-> % .-target .-value)])}]
     [:input {:value @(rf/subscribe [:filters :simple])}]
     [:input {:value @(rf/subscribe [:time-color])}]
-    [:input {:value @(rf/subscribe [:filter-val :numeric])}]
+    ; [:input {:value @(rf/subscribe [:filter-val :numeric])}]
     [:div "test" ]]]) 
 
 

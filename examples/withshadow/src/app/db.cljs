@@ -48,10 +48,10 @@
 ;  :filter-val
 ;  (fn [{:keys [db]} [_ filter-id]]
 ;    (filter-id (:filters db))))
-(rf/reg-sub
- :filter-val
- (fn [{:keys [db]} [_ filter-id]]
-   (filter-id )))
+; (rf/reg-sub
+;  :filter-val
+;  (fn [{:keys [db]} [_ filter-id]]
+;    (filter-id )))
 
 (rf/reg-sub
  :time-color
