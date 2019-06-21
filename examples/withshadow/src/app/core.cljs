@@ -22,9 +22,13 @@
    [create-map 59.92 10.75 12 nil nil]
   ; [create-map 59.92 10.75 12 nil nil]
    [:div {:id "filters-container"} [:input {:type "range" :id "start"
-                                            :name "test" :min "0" :max "11"}]
+                                            :name "test" :min "0" :max "11"
+                                            :on-change #(rf/dispatch [:update-filter :numeric (-> % .-target .-value)])
+                                            }]
     [:input { :on-change #(rf/dispatch [:update-filter :simple (-> % .-target .-value)])}]
-    [:input {:value @(rf/subscribe [:filters])}]
+    [:input {:value @(rf/subscribe [:filters :simple])}]
+    [:input {:value @(rf/subscribe [:time-color])}]
+    [:input {:value @(rf/subscribe [:filter-val :numeric])}]
     [:div "test" ]]]) 
 
 

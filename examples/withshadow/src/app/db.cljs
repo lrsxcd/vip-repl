@@ -41,3 +41,19 @@
 (rf/reg-sub  ;; part of the re-frame API
  :filters         ;; query id  
  query-fn)            ;; query fn
+
+
+
+; (rf/reg-sub
+;  :filter-val
+;  (fn [{:keys [db]} [_ filter-id]]
+;    (filter-id (:filters db))))
+(rf/reg-sub
+ :filter-val
+ (fn [{:keys [db]} [_ filter-id]]
+   (filter-id )))
+
+(rf/reg-sub
+ :time-color
+ (fn [db _]
+   (:numeric (:filters  db))))
