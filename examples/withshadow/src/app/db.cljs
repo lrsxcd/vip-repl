@@ -51,8 +51,7 @@
 (rf/reg-sub ;Should return the value of a filter with id=filter-id
  :filter-val 
  (fn [db filter-id]
- ;(fn [{:keys [db]} [_ filter-id]]
-   (:numeric (:filters  db))))
+   (filter-id (:filters  db))))
 
 (rf/reg-sub
  :get-numeric-value
