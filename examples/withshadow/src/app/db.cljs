@@ -54,6 +54,6 @@
 ;    (filter-id )))
 
 (rf/reg-sub
- :time-color
+ :get-numeric-value
  (fn [db _]
    (:numeric (:filters  db))))

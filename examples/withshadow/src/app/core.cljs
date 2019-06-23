@@ -25,9 +25,9 @@
                                             :name "test" :min "0" :max "11"
                                             :on-change #(rf/dispatch [:update-filter :numeric (-> % .-target .-value)])
                                             }]
-    [:input { :on-change #(rf/dispatch [:update-filter :simple (-> % .-target .-value)])}]
-    [:input {:value @(rf/subscribe [:filters :simple])}]
-    [:input {:value @(rf/subscribe [:time-color])}]
+    [:input { :on-change #(rf/dispatch [:update-filter :simple (-> % .-target .-value)]) :placeholder "change me"}]
+    [:input {:value @(rf/subscribe [:filters :simple]) }]
+    [:input {:value @(rf/subscribe [:get-numeric-value])}]
     ; [:input {:value @(rf/subscribe [:filter-val :numeric])}]
     [:div "test" ]]]) 
 
