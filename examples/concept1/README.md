@@ -21,13 +21,13 @@ npm install
 
 ## Usage
 
-Open a REPL, open [example1](./examples/example1.clj), then evaluate it one form after another, looking at the results in the browser.
-
 Run the client by
 ```shell
 npm run watch
 ```
 at your shell, then open `localhost:8700` at the browsser. Note that you can open it in several browsers (or browser tabs), and they will share the same state.
+
+Open a REPL, open [example1](./examples/example1.clj), then evaluate it one form after another, looking at the results in the browser.
 
 ## License
 
