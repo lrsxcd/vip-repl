@@ -29,6 +29,22 @@ at your shell, then open `localhost:8700` at the browsser. Note that you can ope
 
 Open a REPL, open [example1](./examples/example1.clj), then evaluate it one form after another, looking at the results in the browser.
 
+## TODO
+
+- add a slider component
+
+- create a more complete leaflet API
+
+- add a more complete example (consider cases of slow computation)
+
+- think about consistent API, probably using [Hanami](https://github.com/jsa-aerial/hanami) templates
+
+- think about efficiency of the server-side reactive mechanism
+
+- consider [freactive.core](https://github.com/aaronc/freactive.core) for server-side reactivity
+
+- document implementation details
+
 ## License
 
 Copyright © 2017 LRS
