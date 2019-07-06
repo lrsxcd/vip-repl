@@ -5,18 +5,19 @@
     [environ.core :as environ])
   (:gen-class))
 
-(def port 3000)
+(def default-port 3000)
 
-(defn -main [& args]
+(defn start-server! [& {:keys [port]
+                        :or   {port default-port}}]
   (println "Server starting...")
   (routes/start-websocket)
   (routes/start-router)
   (routes/start-ticker)
   (server/run-server #'routes/handler
-                     {:port (or (some-> (first args) (Integer/parseInt))
-                                (environ/env :http-port port))})
+                     {:port port})
   (println "Ready at port" port "."))
 
-(comment
-  (future (-main))
-  )
+(defn -main [& args]
+  (start-server! {:port (or (some-> (first args) (Integer/parseInt))
+                            (environ/env :http-port default-port))}))
+

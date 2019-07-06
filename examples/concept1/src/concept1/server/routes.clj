@@ -53,10 +53,8 @@
 
 (defmethod event :concept1/assoc-in!
   [ev-msg]
-  (-> ev-msg
-      :event
-      ((fn [[_ path new-val]]
-         (model/assoc-in! path new-val)))))
+  (let [[_ [path new-val]] (:event ev-msg)]
+    (model/assoc-in! path new-val)))
 
 (defn start-router []
   (defonce router
@@ -64,11 +62,12 @@
 
 (defn broadcast []
   (doseq [uid (:any @(:connected-uids channel-socket))]
-    ((:send-fn channel-socket) uid [:concept1/state @model/state])))
+    ((:send-fn channel-socket) uid [:chsk/state @model/state])))
 
 (defn ticker []
   (while true
     (Thread/sleep 150)
+    (model/compute-reactions!)
     (try
       (broadcast)
       (catch Exception ex

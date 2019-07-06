@@ -6,7 +6,8 @@
    [reagent.core :as reagent :refer [atom]]))
 
 (defn start []
-  (reagent/render-component [view/main @model/app-state]
+  (reagent/render-component (fn []
+                              [view/main]))
                             (. js/document (getElementById "app"))))
 
 (defn ^:export init []

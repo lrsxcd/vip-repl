@@ -14,7 +14,10 @@
                  [ring/ring-defaults "0.3.2"]
                  [ring-cors "0.1.13"]
                  [ring/ring-devel "1.7.1"]
-                 [cheshire "5.8.1"]]
+                 [cheshire "5.8.1"]
+                 [prismatic/plumbing "0.5.5"]
+                 [generateme/fastmath "1.2.0"]
+                 [com.rpl/specter "1.1.2"]]
   :repl-options {:init-ns concept1.core}
   :main concept1.server.main)
 
