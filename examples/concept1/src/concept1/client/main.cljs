@@ -8,7 +8,7 @@
 (defn start []
   (reagent/render-component (fn []
                               [view/main]))
-                            (. js/document (getElementById "app"))))
+                            (. js/document (getElementById "app")))
 
 (defn ^:export init []
   ;; init is called ONCE when the page loads
