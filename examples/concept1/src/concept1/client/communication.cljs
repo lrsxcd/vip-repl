@@ -20,8 +20,8 @@
 (defonce chsk-send! (:send-fn channel-socket))
 (defonce chsk-state (:state channel-socket))
 
-(defn add-point! [point]
-  (chsk-send! [:concept1/add-point point]))
+(defn assoc-in! [path new-val]
+  (chsk-send! [:concept1/assoc-in! [path new-val]]))
 
 (defmulti event-msg-handler :id)
 
@@ -29,6 +29,7 @@
   (println "Unhandled event: %s" event))
 
 (defmethod event-msg-handler :chsk/state [{:as ev-msg :keys [?data]}]
+  (println [:chsk/state ev-msg])
   (if (= ?data {:first-open? true})
     (println "Channel socket successfully established!")
     (println "Channel socket state change:" ?data)))
@@ -46,4 +47,3 @@
 
 (defn respawn []
   (chsk-send! [:concept1.client/respawn]))
-

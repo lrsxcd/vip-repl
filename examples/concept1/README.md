@@ -1,10 +1,10 @@
 # client-server architecture -- concept #1 
 
-This is a very basic example of sharing state across clients through one central server.
+This is a very basic example of a simple web app managing client(s) states in the serverd, used as a tool for a toy data exploration task.
 
-At the moment, we only the set of markers across leaflet maps, nothing more.
+It is work in progress -- more will come.
 
-This is work in progress -- more will come.
+The APIs and implementation details are experimental, and require much more thought. The important thing here, for now, is demonstrating the usage example.
 
 ## Inspiration
 
@@ -12,24 +12,25 @@ This is work in progress -- more will come.
 
 [Snake Lake](https://github.com/timothypratley/snakelake) for client-server architecture using [Sente](https://github.com/ptaoussanis/sente).
 
+[Shiny](https://shiny.rstudio.com/) is a whole web framework for data science usage. We try to mimic the essense of its architecture here, with some differences.
+
+## Installation
+```shell
+npm install
+```
+
 ## Usage
 
-Server:
-``` shell
-lein run
+Run the client by
+```shell
+npm run watch
 ```
+at your shell, then open `localhost:8700` at the browsser. Note that you can open it in several browsers (or browser tabs), and they will share the same state.
 
-Client:
-``` shell
-yarn install
-yarn watch
-```
-
-Open `localhost:8700` at two distinct browsers, try clicking the maps, and see them synchronize.
+Open a REPL, open [example1](./examples/example1.clj), then evaluate it one form after another, looking at the results in the browser.
 
 ## License
 
 Copyright © 2017 LRS
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
