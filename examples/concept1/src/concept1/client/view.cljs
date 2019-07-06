@@ -71,10 +71,6 @@
 
 (defn main []
   (let [data-state (-> @model/app-state :world :data)]
-    [:p (-> @model/app-state
-            :world
-            :components
-            pr-str)]
     [:div
      (->> @model/app-state
          :world

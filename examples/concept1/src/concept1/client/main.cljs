@@ -2,13 +2,11 @@
   (:require
    [concept1.client.ainit]
    [concept1.client.view :as view]
-   [concept1.client.model :as model]
    [reagent.core :as reagent :refer [atom]]))
 
 (defn start []
-  (reagent/render-component (fn []
-                              [view/main]))
-                            (. js/document (getElementById "app")))
+  (reagent/render-component [view/main]
+                            (. js/document (getElementById "app"))))
 
 (defn ^:export init []
   ;; init is called ONCE when the page loads
