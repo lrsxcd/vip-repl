@@ -18,6 +18,6 @@
   (println "Ready at port" port "."))
 
 (defn -main [& args]
-  (start-server! {:port (or (some-> (first args) (Integer/parseInt))
-                            (environ/env :http-port default-port))}))
+  (start-server! :port (or (some-> (first args) (Integer/parseInt))
+                           (environ/env :http-port default-port))))
 
