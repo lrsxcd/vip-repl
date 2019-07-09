@@ -18,7 +18,10 @@
                         :latlng     [45.466667 9.2]}
                        {:name       "Warsaw"
                         :population 165167
-                        :latlng     [52.25 21]}])
+                        :latlng     [52.25 21]}
+                       {:name "Oslo"
+                        :population 123000
+                        :latlng [59.2 10.3]}])
 
 ;; Add a reaction
 (add-reaction! n-cities [cities]
