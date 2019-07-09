@@ -70,11 +70,9 @@
             subform)))))
 
 (defn main []
-  (let [data-state (-> @model/app-state :world :data)]
-    [:div
-     (->> @model/app-state
-         :world
-         :components
-         (map (partial walk-lookup data-state))
-         (into [:div]))]))
-
+  (let [state (:world @model/app-state)]
+    [:div#mainvis
+     (->> state
+          :components
+          (map (partial walk-lookup (:data state)))
+          (into [:div#compcontainer]))]))
