@@ -10,6 +10,13 @@
                                                 append-comp-container]]
             [concept1.server.util :refer [haversine-distance]]))
 
+;;; Notes
+
+;; You need to `npm install vega vega-lite vega-embed vega-tooltip`
+
+;; Run the code in this file selectievly, follow the scenario (steps
+;; are numbered) and see what happens.
+
 ;;; Scenario
 
 ;;; 1. call once to start server
@@ -97,14 +104,16 @@
 ;;; clear everything (components & data)
 ;; (clear!)
 
-;;; vega test
+;;; vega test - NEW
 
+;;; 12. create example data
 (defn play-data [& names]
   (for [n names i (range 20)]
     {:time i
      :item n
      :quantity (+ (Math/pow (* i (count n)) 0.8) (rand-int (count n)))}))
 
+;;; 13. use the data for creating a vega-lite plot definition
 (def line-plot
   {:data {:values (play-data "Monkey" "Cat" "Parrot")}
    :encoding {:x {:field "time"}
@@ -112,8 +121,11 @@
               :color {:field "item" :type "nominal"}}
    :mark "line"})
 
+;;; 14. create a component for the vega-line plot
 (def vega-comp [:vega-lite line-plot {:width 450}])
 
+;;; 15. add the vega component, thus causing the frontend to display
+;;; it
 (add-component! (make-comp-container vega-comp))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
