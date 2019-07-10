@@ -1,10 +1,32 @@
 /* some style */
 
-.leaflet-container {
-    height: 200px;
+body {
+    background-color: #FDF6E3;
+    foreground-color: #657B83;
+    font-size: 1.2em;
+}
+
+#compcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#compcontainer .comp-container {
+    margin: 10px;
+    padding: 0;
+    width: 48%;
+    border: 4px solid green;
+}
+
+#compcontainer .leaflet-container {
+    margin: auto;
+    height: 500px;
     width: 100%;
 }
 
-body {
-    background-color: #777777;
+.comp-container .text {
+    padding: 0.2em .5em 0 .5em;
 }
