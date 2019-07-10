@@ -79,13 +79,17 @@
     (first v)))
 
 (defn walk-lookup [data-state form]
-  (->> form
+ "Reconstruct the reagent components by inserting 'data-state' as the
+  first parametr in every subform which is either :leaflet or :string"
+   (->> form
        (walk/postwalk
         (fn [subform]
           (if-let [component (-> subform
                                  first-when-vector
                                  component-lookup)]
-            (into [component data-state] (rest subform))
+            (if (= component vega-lite)
+              (into [component] (rest subform))
+              (into [component data-state] (rest subform)))
             subform)))))
 
 (defn main []
