@@ -10,20 +10,38 @@
    [reagent.core :as reagent :refer [atom]]
    [react-leaflet :refer [Map TileLayer Marker Circle CircleMarker Popup Tooltip]]
    [clojure.walk :as walk]
-   [cljs.pprint :refer [pprint]])
+   [cljs.pprint :refer [pprint]]
+   [concept1.client.vega :as vega :refer [vega-lite]]
+   ;; the following two are required for gstring/format
+   [goog.string :as gstring]
+   [goog.string.format]
+   )
   (:import
    [goog.crypt Md5]))
 
 (defn tile-layer []
-  [:> TileLayer  {:attribution= "Tiles &copy ; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-                  :url          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"}])
+  [:> TileLayer {:attribution=
+                 (str "Tiles &copy ; Esri &mdash; Source: Esri, i-cubed, USDA, "
+                      "USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, "
+                      "UPR-EGP, and the GIS User Community")
+                 :url
+                 (str "https://server.arcgisonline.com/ArcGIS/rest/services/"
+                      "World_Imagery/MapServer/tile/{z}/{y}/{x}")}])
 
 
-(defn leaflet [data-state
-               {:keys [center
-                       zoom
-                       circle-markers
-                       selection-path]}]
+(defn tile-layer-osm
+  []
+  [:> TileLayer {:attribution=
+                   (str "&copy; <a href=&quot;http://osm.org/copyright&quot;>"
+                        "OpenStreetMap</a> contributors")
+                   :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}])
+
+(defn leaflet
+  "Reagent component that renders a leaflet map"
+  [data-state {:keys [center
+                      zoom
+                      circle-markers
+                      selection-path]}]
   [:div
    (->> (into
          [:> Map  {:center  center
@@ -33,7 +51,7 @@
                                    .-latlng
                                    ((juxt #(.-lat %) #(.-lng %)))
                                    (communication/assoc-in! selection-path)))}
-          [tile-layer]]
+          [tile-layer-osm]]
          (->> circle-markers
               (map (fn [{:keys [data-path LABEL LATLNG]
                          :or   {LABEL :label LATLNG :latlng}}]
@@ -44,16 +62,17 @@
                                   [:> Tooltip (LABEL point)]])))))
               (apply concat))))])
 
-(defn string [data-state
-              {:keys [data-path]}]
-  (->> data-path
-       (get-in data-state)
-       str))
+(defn string
+  "Reagent component that renders a string"
+  [data-state {:keys [data-path fmt-txt]}]
+  (let [value (str (get-in data-state data-path))]
+    (gstring/format fmt-txt value)))
 
 
 (def component-lookup
   {:leaflet leaflet
-   :string  string})
+   :string  string
+   :vega-lite vega-lite})
 
 (defn first-when-vector [v]
   (when (vector? v)
