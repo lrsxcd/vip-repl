@@ -2,7 +2,8 @@
   (:require [concept1.server.main :refer [start-server!]]
             [concept1.server.model :refer [clear! add-component! add-dataset!
                                            compute-reactions! state
-                                           clear-components!]]
+                                           clear-components!
+                                           undo!]]
             [concept1.server.plumbing :refer [add-reaction!]]
             [concept1.server.components :refer [make-text-comp
                                                 make-map-comp
@@ -68,3 +69,4 @@
 
 (add-component! (append-comp-container cont1 map1-txt2))
 
+(undo!)
