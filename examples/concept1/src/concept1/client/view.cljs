@@ -29,6 +29,8 @@
                       "World_Imagery/MapServer/tile/{z}/{y}/{x}")}])
 
 
+
+
 (defn tile-layer-osm
   []
   [:> TileLayer {:attribution=
@@ -51,7 +53,7 @@
                                    .-latlng
                                    ((juxt #(.-lat %) #(.-lng %)))
                                    (communication/assoc-in! selection-path)))}
-          [tile-layer-osm]]
+          [tile-layer]]
          (->> circle-markers
               (map (fn [{:keys [data-path LABEL LATLNG]
                          :or   {LABEL :label LATLNG :latlng}}]
