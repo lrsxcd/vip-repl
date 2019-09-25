@@ -7,6 +7,24 @@
 (def state
   (atom {}))
 
+(def history
+  (atom [@state]))
+
+(defn reset-history! []
+  (reset! history [@state]))
+
+(add-watch state :history
+           (fn [_ _ _ new-state]
+             (when-not (= (last @history) new-state)
+               (swap! history conj new-state))))
+
+(defn undo! []
+  (if (> (count @history) 2)
+    (do (swap! history pop)
+        (reset! state (last @history)))))
+
+
+
 (defn compute-reactions! []
   (swap! state
          update :data
